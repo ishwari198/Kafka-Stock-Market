@@ -1,0 +1,47 @@
+#!/bin/bash
+
+# Connect to ec2 instance
+ssh -i "kafka-stock.pem" ec2-user@ec2-54-85-213-66.compute-1.amazonaws.com
+
+# Install Kafka
+echo "Installing Kafka..."
+wget https://downloads.apache.org/kafka/3.5.2/kafka_2.12-3.5.2.tgz
+tar -xvf kafka_2.12-3.5.2.tgz
+
+# Install JDK
+echo "Installing JDK..."
+sudo yum install java-11-amazon-correcto-devel
+
+# Start Zookeeper
+echo "Starting Zookeeper..."
+cd kafka_2.12-3.5.2
+bin/zookeeper-server-start.sh config/zookeeper.properties 
+
+# Open another window to start Kafka
+echo "Starting Kafka..."
+echo "First, SSH to your EC2 machine as done above, then run Kafka server"
+export KAFKA_HEAP_OPTS=\"-Xmx256M -Xms128M\
+cd kafka_2.12-3.5.2
+bin/kafka-server-start.sh config/server.properties 
+
+# Adjust server.properties for public IP
+echo "Adjusting server.properties for public IP..."
+sudo nano config/server.properties
+echo "Change ADVERTISED_LISTENERS to public IP of the EC2 instance"
+echo "Put your public IP there."
+
+# For security access
+echo "For security access, change the inbound security rules to allow all traffic for this project."
+
+# Create Kafka topic
+echo "Creating Kafka topic..."
+cd kafka_2.12-3.5.2
+bin/kafka-topics.sh --create --topic demo_test1 --bootstrap-server 3.84.116.5:9092 --replication-factor 1 --partitions 1
+
+# Start Producer
+echo "Starting Kafka Producer..."
+bin/kafka-console-producer.sh --topic test1 --bootstrap-server 3.84.116.5:9092
+
+# Start Consumer
+echo "Starting Kafka Consumer..."
+bin/kafka-console-consumer.sh --topic test1 --bootstrap-server 3.84.116.5:9092
