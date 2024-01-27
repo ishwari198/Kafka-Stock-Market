@@ -79,6 +79,6 @@ To access Amazon S3 from your local machine, follow these steps:
    - Access the AWS Athena console and execute SQL queries to analyze data stored in your S3 buckets.
   
 ### Output file 
-  <img src="kafka_server.png" width="1000" height="500">
+  <img src="Kafka_server.png" width="900" height="400">
 
 
