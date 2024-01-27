@@ -33,17 +33,24 @@ This project involves real-time streaming of stock market data using Kafka serve
 
 I have attached command.txt file for instruction follow that.
 
-# Kafka Producer and Consumer for Loading Data into S3 Buckets
+# Kafka Producer and Consumer for Loading Data into S3
 
-This repository contains two Python files: a Kafka producer and a Kafka consumer. These files are designed to load data into Amazon S3 buckets.
+This repository contains Python files for a Kafka producer and consumer, designed to load data into Amazon S3 buckets.
 
-## Kafka Producer
+## Usage
 
-The Kafka producer file (`kafka_producer.ipynb`) is responsible for generating and publishing data messages to a Kafka topic. These messages can be in various formats, such as JSON, CSV, or plain text. The producer sends these messages to a Kafka broker, which then distributes them across multiple partitions within the Kafka cluster.
+1. **Setup Kafka Environment**:
+   - Ensure a running Kafka environment with defined topics.
 
-## Kafka Consumer
+2. **Configure AWS Credentials**:
+   - Set up AWS credentials for S3 access.
 
-The Kafka consumer file (`KafkaConsumer.ipynb`) is responsible for consuming data messages from a Kafka topic. It subscribes to a specific Kafka topic and retrieves messages published by the producer. Once retrieved, the consumer processes these messages as needed. In this case, the consumer is configured to load the data into Amazon S3 buckets.
+3. **Run Kafka Producer**:
+   - Execute `kafka_producer.py` to generate and publish data to Kafka.
+
+4. **Run Kafka Consumer**:
+   - Execute `kafka_consumer.py` to consume Kafka data and load it into S3.
+
 
 ## Additional Instructions for AWS Glue and Athena
 To access Amazon S3 from your local machine, follow these steps:
