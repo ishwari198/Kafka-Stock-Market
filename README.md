@@ -15,15 +15,15 @@ This project involves real-time streaming of stock market data using Kafka serve
 4. Glue Catalog
 5. EC2
 - Apache Kafka
-
-### Broker Basics
+### About Kafka server
+Broker Basics
 
 - **Producer**: Sends messages to brokers.
 - **Brokers**: Receive and store messages.
 - **Kafka Cluster**: Can have many brokers.
 - **Partitions**: Each broker manages multiple partitions where data are replicated.
 
-### Consumer Basics
+Consumer Basics
 
 - **Consumers**: Pull messages from one or more topics.
 - New inflowing messages are automatically retrieved.
